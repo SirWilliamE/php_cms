@@ -1,15 +1,21 @@
+<?php include "includes/admin_header.php" ?>
+
 <?php
-
-if(isset($_GET['edit_user'])){
+  
     
-    $the_user_id = $_GET['edit_user'];
-    
-    
-    $query = "SELECT * FROM users WHERE user_id = $the_user_id ";
-    $select_users_query = mysqli_query($connection,$query);
-
-    while($row = mysqli_fetch_assoc($select_users_query )) {
-
+    if(isset($_SESSION['username'])) {
+        
+        
+        $username = $_SESSION['username'];
+        
+        $query = "SELECT * FROM users WHERE username = '{$username}' ";
+        
+        $select_user_profile_query = mysqli_query($connection, $query);
+        
+        
+        while($row = mysqli_fetch_array($select_user_profile_query)) {
+            
+            
         $user_id = $row['user_id'];
         $username = $row['username'];
         $user_password = $row['user_password'];
@@ -20,16 +26,19 @@ if(isset($_GET['edit_user'])){
         $user_role = $row['user_role'];
         
         
+            
+        }
+        
+        
     }
     
-    
-    
-}
+?>
 
 
+<?php
 
 
-    if(isset($_POST['edit_user'])) {
+if(isset($_POST['edit_user'])) {
         
         
         $user_firstname = $_POST['user_firstname'];
@@ -60,7 +69,7 @@ if(isset($_GET['edit_user'])){
         $query .="username = '{$username}', ";
         $query .="user_email = '{$user_email}', ";
         $query .="user_password = '{$user_password}' ";
-        $query .="WHERE user_id = {$the_user_id} ";
+        $query .="WHERE username = '{$username}' ";
         
         
         $edit_user_query = mysqli_query($connection, $query);
@@ -74,9 +83,42 @@ if(isset($_GET['edit_user'])){
 
 
 
-?>
-   
 
+
+
+?>
+
+
+    <div id="wrapper">
+        
+        
+        
+
+        <!-- Navigation -->
+        
+        <?php include "includes/admin_navigation.php" ?>
+        
+        
+        
+        
+        <div id="page-wrapper">
+
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                    
+                    
+                    <h1 class="page-header">
+                            Welcome to the Admin
+                            <small>Author</small>
+                        </h1>
+                    
+                    
+        
+                   
+                       
    
    
    
@@ -138,7 +180,7 @@ if(isset($_GET['edit_user'])){
     
  
     <div class="form-group">
-        <input class="btn btn-primary" type="submit" name="edit_user" value="Edit User">
+        <input class="btn btn-primary" type="submit" name="edit_user" value="Update Profile">
     </div>
     
 </form>
@@ -146,3 +188,29 @@ if(isset($_GET['edit_user'])){
 
 
 
+                
+                               
+                                   
+                                       
+                                               
+                    
+                    </div>
+                </div>
+                <!-- /.row -->
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        
+        
+        
+
+        
+        <!-- /#page-wrapper -->
+
+
+        
+        <?php include "includes/admin_footer.php" ?>
+        
+        

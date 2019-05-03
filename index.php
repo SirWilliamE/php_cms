@@ -31,14 +31,9 @@
                     $post_status = $row['post_status'];
                         
                         
-                    if($post_status !== 'Published'){
+                    if($post_status == 'Published'){
                         
-                        echo "<h1 class='text-center'> No Posts Yet! </h1>";
-                        
-                        
-                    } else {
-                        
-                    
+                       
                         
                     ?>
                         
