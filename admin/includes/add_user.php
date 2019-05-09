@@ -32,6 +32,9 @@
         
         confirm($create_user_query);
         
+        
+        echo "User Created: " . " " . "<a href='users.php'>View All Users</a> " . "<BR></BR>";
+        
     }
 
 
