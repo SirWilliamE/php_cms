@@ -65,6 +65,11 @@ if(!isset($_SESSION['user_role'])) {
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     
     
+    
+    <script src="https://cdn.ckeditor.com/ckeditor5/12.1.0/classic/ckeditor.js"></script>
+    
+    
+    
 
 </head>
 

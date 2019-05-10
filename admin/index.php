@@ -189,9 +189,18 @@
                 
     <?php
                 
-//        Get Post Draft count
                 
-        $query = "SELECT * FROM posts WHERE post_status = 'draft'";
+//        Get Posts Published count
+                
+        $query = "SELECT * FROM posts WHERE post_status = 'published' ";
+                
+        $select_all_published = mysqli_query($connection,$query);           
+                        
+        $published_count = mysqli_num_rows($select_all_published);
+                
+//        Get Posts Draft count
+                
+        $query = "SELECT * FROM posts WHERE post_status = 'draft' ";
                 
         $select_all_drafts = mysqli_query($connection,$query);           
                         
@@ -200,7 +209,7 @@
                 
 //        Get Comment Draft count                
 
-        $query = "SELECT * FROM comments WHERE comment_status = 'unapproved'";
+        $query = "SELECT * FROM comments WHERE comment_status = 'unapproved' ";
                 
         $unapproved_comments = mysqli_query($connection,$query);           
                         
@@ -209,7 +218,7 @@
                 
 //        Get Post Draft count
                 
-        $query = "SELECT * FROM users WHERE user_role = 'subscriber'";
+        $query = "SELECT * FROM users WHERE user_role = 'subscriber' ";
                 
         $select_all_subscribers = mysqli_query($connection,$query);           
                         
@@ -239,9 +248,9 @@
             
             <?php
             
-            $element_text = ['Active Posts', 'Post Drafts', 'Comments', 'Pending Comments', 'Users', 'Subscribers', 'Categories'];
+            $element_text = ['All Posts', 'Active Posts', 'Post Drafts', 'Comments', 'Pending Comments', 'Users', 'Subscribers', 'Categories'];
             
-            $element_count = [$post_counts, $draft_count, $comment_counts, $unapproved_comment_count, $user_counts, $subscriber_count, $category_counts];
+            $element_count = [$post_counts, $published_count, $draft_count, $comment_counts, $unapproved_comment_count, $user_counts, $subscriber_count, $category_counts];
             
             for($i = 0; $i < 7; $i++) {
                 
